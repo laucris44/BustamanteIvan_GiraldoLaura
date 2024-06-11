@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class PacienteService {
     @Autowired
@@ -31,5 +32,4 @@ public class PacienteService {
     public List<Paciente> buscarTodos(){
         return pacienteRepository.findAll();
     }
-
 }

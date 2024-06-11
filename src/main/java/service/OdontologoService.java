@@ -1,14 +1,47 @@
 package service;
 
 import entity.Odontologo;
+import entity.Paciente;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import repository.OdontolgoRepository;
 
+import java.util.List;
+import java.util.Optional;
+
+@Service
 public class OdontologoService {
-    public Odontologo guardarOdontologo(Odontologo odontologo) {
-    }
+    @Autowired
+    private OdontologoRepository odontologoRepository;
 
-    public Odontologo buscarPorId(Integer id) {
+    public Odontologo registrarOdontologo(Odontologo odontologo){
+        return odontologoRepository.save(odontologo);
     }
+    public List<Odontologo> listarTodos(){
+        return odontologoRepository.findAll();
+    }
+}
 
-    public Object listarTodos() {
+
+/*
+    public Paciente guardarPaciente(Paciente paciente){
+        return pacienteRepository.save(paciente);
     }
+    public void actualizarPaciente(Paciente paciente){
+        pacienteRepository.save(paciente);
+    }
+    public Optional<Paciente> buscarPorID(Long id){
+        return pacienteRepository.findById(id);
+    }
+    public Optional<Paciente> buscarPorEmail(String email){
+        return pacienteRepository.findByEmail(email);
+    }
+    public void eliminarPaciente(Long id){
+        pacienteRepository.deleteById(id);
+    }
+    public List<Paciente> buscarTodos(){
+        return pacienteRepository.findAll();
+    }
+    */
+
 }

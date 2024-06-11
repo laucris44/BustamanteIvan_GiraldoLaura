@@ -6,6 +6,8 @@ import service.OdontologoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/odontologos")
 public class OdontologoController {
@@ -24,7 +26,7 @@ public class OdontologoController {
     }
     @GetMapping
     public ResponseEntity<List<Odontologo>> listarTodos(){
-        return ResponseEntity.ok(odontologoService.listarTodos());
+        return ResponseEntity.ok((List<Odontologo>) odontologoService.listarTodos());
     }
 
 }
