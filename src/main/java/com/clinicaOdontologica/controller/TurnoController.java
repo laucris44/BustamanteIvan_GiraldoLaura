@@ -1,6 +1,6 @@
 package com.clinicaOdontologica.controller;
 
-import entity.Turno;
+import com.clinicaOdontologica.entity.Turno;
 import com.clinicaOdontologica.service.OdontologoService;
 import com.clinicaOdontologica.service.PacienteService;
 import com.clinicaOdontologica.service.TurnoService;

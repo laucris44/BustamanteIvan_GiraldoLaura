@@ -1,7 +1,7 @@
 package com.clinicaOdontologica.controller;
 
 
-import entity.Odontologo;
+import com.clinicaOdontologica.entity.Odontologo;
 import com.clinicaOdontologica.service.OdontologoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

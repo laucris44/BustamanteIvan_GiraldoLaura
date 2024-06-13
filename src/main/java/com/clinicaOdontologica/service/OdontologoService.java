@@ -1,6 +1,7 @@
 package com.clinicaOdontologica.service;
 
-import entity.Odontologo;
+import com.clinicaOdontologica.entity.Odontologo;
+import com.clinicaOdontologica.repository.OdontologoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

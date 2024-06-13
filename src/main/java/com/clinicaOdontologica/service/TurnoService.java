@@ -1,6 +1,6 @@
 package com.clinicaOdontologica.service;
 
-import entity.Turno;
+import com.clinicaOdontologica.entity.Turno;
 import repository.TurnoRepository;
 
 public class TurnoService {
