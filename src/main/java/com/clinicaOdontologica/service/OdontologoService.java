@@ -1,13 +1,10 @@
-package service;
+package com.clinicaOdontologica.service;
 
 import entity.Odontologo;
-import entity.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.OdontolgoRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class OdontologoService {

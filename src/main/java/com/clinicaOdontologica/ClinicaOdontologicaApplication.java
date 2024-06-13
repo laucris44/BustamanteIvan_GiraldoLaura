@@ -1,4 +1,4 @@
-package ClinicaOdontologica;
+package com.clinicaOdontologica;
 
 
 import dao.BD;

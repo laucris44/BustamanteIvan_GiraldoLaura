@@ -1,4 +1,4 @@
-package service;
+package com.clinicaOdontologica.service;
 
 import entity.Paciente;
 import repository.PacienteRepository;
