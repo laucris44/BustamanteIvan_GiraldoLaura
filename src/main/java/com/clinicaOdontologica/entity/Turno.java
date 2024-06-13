@@ -1,8 +1,8 @@
-package entity;
+package com.clinicaOdontologica.entity;
 
 import java.time.LocalDate;
 public class Turno {
-    private Integer id;
+    private Long id;
     private Paciente paciente;
     private Odontologo odontologo;
     private LocalDate fecha;
@@ -10,18 +10,18 @@ public class Turno {
     public Turno() {
     }
 
-    public Turno(Integer id, Paciente paciente, Odontologo odontologo, LocalDate fecha) {
+    public Turno(Long id, Paciente paciente, Odontologo odontologo, LocalDate fecha) {
         this.id = id;
         this.paciente = paciente;
         this.odontologo = odontologo;
         this.fecha = fecha;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

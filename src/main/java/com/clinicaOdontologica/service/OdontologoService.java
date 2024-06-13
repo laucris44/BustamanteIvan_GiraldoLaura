@@ -1,11 +1,15 @@
 package com.clinicaOdontologica.service;
 
 import com.clinicaOdontologica.entity.Odontologo;
+import com.clinicaOdontologica.entity.Turno;
+import com.clinicaOdontologica.repository.OdontolgoRepository;
 import com.clinicaOdontologica.repository.OdontologoRepository;
+import com.clinicaOdontologica.repository.TurnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OdontologoService {
@@ -18,6 +22,36 @@ public class OdontologoService {
     public List<Odontologo> listarTodos(){
         return odontologoRepository.findAll();
     }
+
+    public void eliminarOdontologo(Long id){
+        OdontolgoRepository.deleteById(id);
+    }
+    public Odontologo buscarPorId(Long id) {
+        return OdontolgoRepository.findById(id);
+    }
+
+        /*
+buscar por id
+registrar nuevo
+actulizar
+elminar
+listar todos
+     */
+
+    public void eliminarTurno(Long id){
+        TurnoRepository.findById(id);
+        TurnoRepository.deleteById(id);
+    }
+
+    public Optional<Turno> buscarPorID(Long id){
+        return TurnoRepository.findById(id);
+    }
+
+    public List<Turno> buscarTodos(){
+        return TurnoRepository.findAll();
+    }
+
+
 }
 
 

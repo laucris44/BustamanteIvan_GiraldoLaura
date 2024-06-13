@@ -1,4 +1,4 @@
-package repository;
+package com.clinicaOdontologica.repository;
 
 import com.clinicaOdontologica.entity.Odontologo;
 import org.springframework.data.jpa.repository.JpaRepository;

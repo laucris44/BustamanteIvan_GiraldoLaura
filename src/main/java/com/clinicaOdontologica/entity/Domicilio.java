@@ -1,4 +1,4 @@
-package entity;
+package com.clinicaOdontologica.entity;
 
 import jakarta.persistence.*;
 
