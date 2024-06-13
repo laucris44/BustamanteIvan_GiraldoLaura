@@ -1,16 +1,13 @@
-package controller;
+package com.clinicaOdontologica.controller;
 
-import entity.Turno;
-import org.springframework.http.HttpStatus;
-import service.OdontologoService;
-import service.PacienteService;
-import service.TurnoService;
+import com.clinicaOdontologica.entity.Turno;
+import com.clinicaOdontologica.service.OdontologoService;
+import com.clinicaOdontologica.service.PacienteService;
+import com.clinicaOdontologica.service.TurnoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @RestController

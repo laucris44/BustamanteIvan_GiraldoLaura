@@ -1,11 +1,11 @@
-package controller;
+package com.clinicaOdontologica.controller;
 
 
-import entity.Paciente;
+import com.clinicaOdontologica.entity.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.PacienteService;
+import com.clinicaOdontologica.service.PacienteService;
 
 import java.util.List;
 import java.util.Optional;

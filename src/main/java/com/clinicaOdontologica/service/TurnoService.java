@@ -1,10 +1,7 @@
-package service;
+package com.clinicaOdontologica.service;
 
-import entity.Paciente;
-import entity.Turno;
+import com.clinicaOdontologica.entity.Turno;
 import repository.TurnoRepository;
-
-import java.util.Optional;
 
 public class TurnoService {
     public Turno guardarTurno(Turno turno) {
