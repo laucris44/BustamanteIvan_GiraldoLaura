@@ -2,12 +2,12 @@ package com.clinicaOdontologica.repository;
 
 import com.clinicaOdontologica.entity.Odontologo;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-
-public interface OdontolgoRepository extends JpaRepository<Odontologo, Long> {
+@Repository
+public interface IOdontolgoRepository extends JpaRepository<Odontologo, Long> {
     //Optional<Odontologo> findById(Long id);
 
     Optional<Odontologo> findByMatricula(String matricula);
 }
-///para que auxiliea a buscar el odontologo por el ID

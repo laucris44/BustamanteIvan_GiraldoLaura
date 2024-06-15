@@ -9,7 +9,6 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 @Getter
-@NoArgsConstructor
 @Entity
 @Table(name = "ODONTOLOGOS")
 @ToString
@@ -29,7 +28,7 @@ public class Odontologo {
     public Odontologo() {
     }
 
-    public Odontologo(Integer id, String matricula, String nombre, String apellido) {
+    public Odontologo(long id, String matricula, String nombre, String apellido) {
         this.id = id;
         this.matricula = matricula;
         this.nombre = nombre;
@@ -83,8 +82,6 @@ public class Odontologo {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-
-    public void setMatricula(String matricula) { this.matricula = matricula; }
 
     public void setTurnos(Set<Turno> turnos) { this.turnos = turnos; }
 }

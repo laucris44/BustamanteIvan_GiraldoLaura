@@ -1,20 +1,19 @@
 package com.clinicaOdontologica.service;
 
-import com.clinicaOdontologica.entity.Paciente;
 import com.clinicaOdontologica.entity.Turno;
-import com.clinicaOdontologica.repository.TurnoRepository;
+import com.clinicaOdontologica.repository.ITurnoRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 public class TurnoService {
     public Turno guardarTurno(Turno turno) {
-        return TurnoRepository.save(turno);
+        return ITurnoRepository.save(turno);
         //    <S extends T> S save(S entity);
     }
 
     public void actualizarTurno(Turno turno){
-        TurnoRepository.save(turno);
+        ITurnoRepository.save(turno);
     }
     /*
     guardar
@@ -24,15 +23,15 @@ public class TurnoService {
      */
 
     public void eliminarTurno(Long id){
-        TurnoRepository.deleteById(id);
+        ITurnoRepository.deleteById(id);
     }
 
     public Optional<Turno> buscarPorID(Long id){
-        return TurnoRepository.findById(id);
+        return ITurnoRepository.findById(id);
     }
 
     public List<Turno> buscarTodos(){
-        return TurnoRepository.findAll();
+        return ITurnoRepository.findAll();
     }
 
 

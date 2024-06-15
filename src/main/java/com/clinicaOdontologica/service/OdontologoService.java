@@ -1,21 +1,28 @@
 package com.clinicaOdontologica.service;
 
 import com.clinicaOdontologica.entity.Odontologo;
+import com.clinicaOdontologica.dto.OdontologoDTO;
 import com.clinicaOdontologica.entity.Turno;
-import com.clinicaOdontologica.repository.OdontolgoRepository;
+import com.clinicaOdontologica.repository.IOdontolgoRepository;
 import com.clinicaOdontologica.repository.OdontologoRepository;
-import com.clinicaOdontologica.repository.TurnoRepository;
+import com.clinicaOdontologica.service.IOdontologoService;
+import com.clinicaOdontologica.repository.ITurnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.clinicaOdontologica.exeptions.BadRequestException;
 
-import java.util.List;
-import java.util.Optional;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Service;
+import java.util.*;
+
 
 @Service
-public class OdontologoService {
+public class OdontologoService implements IOdontologoService{
     @Autowired
-    private OdontologoRepository odontologoRepository;
+    private IOdontologoRepository odontologoRepository;
 
+    @Autowired
+    ObjectMapper mapper;
     public Odontologo registrarOdontologo(Odontologo odontologo){
         return odontologoRepository.save(odontologo);
     }
@@ -24,10 +31,10 @@ public class OdontologoService {
     }
 
     public void eliminarOdontologo(Long id){
-        OdontolgoRepository.deleteById(id);
+        IOdontolgoRepository.deleteById(id);
     }
     public Odontologo buscarPorId(Long id) {
-        return OdontolgoRepository.findById(id);
+        return IOdontolgoRepository.findById(id);
     }
 
         /*
@@ -39,41 +46,93 @@ listar todos
      */
 
     public void eliminarTurno(Long id){
-        TurnoRepository.findById(id);
-        TurnoRepository.deleteById(id);
+        ITurnoRepository.findById(id);
+        ITurnoRepository.deleteById(id);
     }
 
     public Optional<Turno> buscarPorID(Long id){
-        return TurnoRepository.findById(id);
+        return ITurnoRepository.findById(id);
     }
 
     public List<Turno> buscarTodos(){
-        return TurnoRepository.findAll();
+        return ITurnoRepository.findAll();
     }
 
+    private void guardarOdontologo(OdontologoDTO ondontolgoDTO) {
+        //Armamos un método para código repetido
+        //Transformamos el estudianteDTO a Objeto de tipo Odontologo con el mapper
+        //Las propiedades que se llaman igual, las asigna
+        Odontologo odontologo = mapper.convertValue(ondontolgoDTO, Odontologo.class);
+        odontologoRepository.save(odontologo);
+    }
+
+    //Método HTTP: POST
+    //odontologo es un objeto, ese objeto es un body --> Request Body
+    @Override
+    public void crearOdontologo(OdontologoDTO odontologoDTO) {
+        //Utilizo el método guardarOdontologo
+        guardarOdontologo(odontologoDTO);
+
+    }
+
+    //Método HTTP: GET
+    //Por estar buscando por ID se puede usar Request Param o
+    //PATH Variable (recomendable)
+    @Override
+    public OdontologoDTO buscarOdontologo(Long id) throws BadRequestException {
+        //Optional nos permite averiguar si el contenido esta nulo o no
+        Optional<Odontologo> odontologo = odontologoRepository.findById(id);
+        OdontologoDTO odontologoDTO = null;
+        //Si el odontologo no es nullo
+        if (odontologo.isPresent()) {
+            //Lo convertimos en un OdontologoDTO
+            odontologoDTO = mapper.convertValue(odontologo, OdontologoDTO.class);
+            return odontologoDTO;
+        } else
+            throw new BadRequestException("El ID: " + id + " no existe");
+    }
+
+    //Método HTTP: PUT
+    @Override
+    public void modificarOdontologo(OdontologoDTO odontologoDTO) {
+        guardarOdontologo(odontologoDTO);
+    }
+
+    //Método HTTP: DELETE
+    @Override
+    public void eliminarOdontologo(Long id) {
+        odontologoRepository.deleteById(id);
+    }
+
+    //Método HTTP: GET
+    //Devolver una lista
+    @Override
+    public Collection<OdontologoDTO> listarOdontologos() {
+
+        List<Odontologo> odontologos = odontologoRepository.findAll();
+        //Recorremos la lista y, por cada odontologo, llenamos otra lista
+        //con odontologosDTO. Recorremos y llenamos
+        Set<OdontologoDTO> odontologosDTO = new HashSet<>();
+        //Recorro la colección de odontologos y lleno otra, donde tranformamos
+        //al estudianteDTO
+        for (Odontologo odontologo : odontologos)
+            odontologosDTO.add(mapper.convertValue(odontologo,OdontologoDTO.class));
+        return odontologosDTO;
+    }
+
+    public Odontologo findByMatricula(String matricula) {
+        Odontologo odontologoFind = null;
+        List<Odontologo> odontologos = odontologoRepository.findAll();
+        for (Odontologo odontologo : odontologos) {
+            if (odontologo.getMatricula().equals(matricula)) {
+                odontologoFind = odontologo;
+            }
+        }
+        return odontologoFind;
+    }
 
 }
 
 
-/*
-    public Paciente guardarPaciente(Paciente paciente){
-        return pacienteRepository.save(paciente);
-    }
-    public void actualizarPaciente(Paciente paciente){
-        pacienteRepository.save(paciente);
-    }
-    public Optional<Paciente> buscarPorID(Long id){
-        return pacienteRepository.findById(id);
-    }
-    public Optional<Paciente> buscarPorEmail(String email){
-        return pacienteRepository.findByEmail(email);
-    }
-    public void eliminarPaciente(Long id){
-        pacienteRepository.deleteById(id);
-    }
-    public List<Paciente> buscarTodos(){
-        return pacienteRepository.findAll();
-    }
-    */
 
-}
+
