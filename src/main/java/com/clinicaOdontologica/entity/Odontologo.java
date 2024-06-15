@@ -1,10 +1,30 @@
 package com.clinicaOdontologica.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
+
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
+@Getter
+@NoArgsConstructor
+@Entity
+@Table(name = "ODONTOLOGOS")
+@ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Odontologo {
-    private Integer id;
-    private String matricula;
+    @Id
+    @SequenceGenerator(name = "odontologo_sequence", sequenceName = "odontologo_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
     private String nombre;
+    @Column
     private String apellido;
+    @Column
+    private String matricula;
 
     public Odontologo() {
     }
@@ -16,17 +36,27 @@ public class Odontologo {
         this.apellido = apellido;
     }
 
+    public Odontologo(String nombre, String apellido, String matricula, Set<Turno> turnos) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.matricula = matricula;
+        this.turnos = turnos;
+    }
+
     public Odontologo(String matricula, String nombre, String apellido) {
         this.matricula = matricula;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public Integer getId() {
+    @OneToMany(mappedBy = "odontologo", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Turno> turnos = new HashSet<>();
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -54,4 +84,7 @@ public class Odontologo {
         this.apellido = apellido;
     }
 
+    public void setMatricula(String matricula) { this.matricula = matricula; }
+
+    public void setTurnos(Set<Turno> turnos) { this.turnos = turnos; }
 }
