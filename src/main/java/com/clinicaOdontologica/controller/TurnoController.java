@@ -1,11 +1,19 @@
 package com.clinicaOdontologica.controller;
 
-import com.clinicaOdontologica.entity.Turno;
-import com.clinicaOdontologica.service.OdontologoService;
-import com.clinicaOdontologica.service.PacienteService;
-import com.clinicaOdontologica.service.TurnoService;
+import com.clinicaOdontologica.dto.TurnoDTO;
+import com.clinicaOdontologica.exeptions.BadRequestException;
+import com.clinicaOdontologica.exeptions.ResourceNotFoundException;
+import com.clinicaOdontologica.exeptions.TurnoNotFoundException;
+import com.clinicaOdontologica.repository.IOdontologoRepository;
+import com.clinicaOdontologica.repository.IPacienteRepository;
+import com.clinicaOdontologica.service.IOdontologoService;
+import com.clinicaOdontologica.service.IPacienteService;
+import com.clinicaOdontologica.service.ITurnoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -13,27 +21,74 @@ import java.util.List;
 @RestController
 @RequestMapping("/turnos")
 public class TurnoController {
-    private TurnoService turnoService;
+    @Autowired
+    private ITurnoService turnoService;
 
-    public TurnoController() {
-        turnoService= new TurnoService();
+    @Autowired
+    private IPacienteService pacienteService;
+
+    @Autowired
+    private IOdontologoService odontologoService;
+
+    @Autowired
+    private IPacienteRepository pacienteRepository;
+
+    @Autowired
+    private IOdontologoRepository odontologoRepository;
+
+    @PostMapping
+    public ResponseEntity<TurnoDTO> crearTurno(@RequestBody TurnoDTO turnoDTO) {
+        try {
+            TurnoDTO nuevoTurno = turnoService.crearTurno(turnoDTO);
+            return ResponseEntity.ok(nuevoTurno);
+        } catch (BadRequestException e) {
+            return ResponseEntity.badRequest().build();
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
-  @PostMapping
-    public ResponseEntity<Turno> guardarTurno(@RequestBody Turno turno){
 
-      PacienteService pacienteService= new PacienteService();
-      OdontologoService odontologoService= new OdontologoService();
-      if(pacienteService.buscarPorID(turno.getPaciente().getId())!=null&&odontologoService.buscarPorId(turno.getOdontologo().getId())!=null){
-          return ResponseEntity.ok(turnoService.guardarTurno(turno));
-      }else{
-          //bad request or not found
-          return ResponseEntity.badRequest().build();
-      }
-          }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarTurnoId(@PathVariable("id") Long id) {
+        try {
+            TurnoDTO turnoDTO = turnoService.buscarTurno(id);
+            return ResponseEntity.ok(turnoDTO);
+        } catch (ResourceNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
-    @GetMapping
-    public ResponseEntity<List<Turno>> listarTodosLosTurnos(){
-        return ResponseEntity.ok(turnoService.listarTurnos());
+    @PutMapping("/modificar")
+    public ResponseEntity<?> modificarTurno(@RequestBody TurnoDTO turnoDTO) {
+        try {
+            TurnoDTO modificarTurno = turnoService.modificarTurno(turnoDTO);
+            return ResponseEntity.ok(modificarTurno);
+        } catch (ResourceNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (BadRequestException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<String> eliminarTurno(@PathVariable Long id) {
+        try {
+            turnoService.eliminarTurno(id);
+            return ResponseEntity.ok("Turno eliminado");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No se pudo eliminar el turno. Asegúrate de que el turno existe.");
+        }
+    }
+
+    @GetMapping("/listar")
+    public ResponseEntity<List<TurnoDTO>> listarTurnos() {
+        List<TurnoDTO> turnosDTO = null;
+        try {
+            turnosDTO = turnoService.listarTurnos();
+        } catch (ResourceNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return ResponseEntity.ok(turnosDTO);
     }
 }
 
