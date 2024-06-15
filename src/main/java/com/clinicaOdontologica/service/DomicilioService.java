@@ -63,5 +63,4 @@ public class DomicilioService implements IDomicilioService{
         return domiciliosDTO;
     }
 
-    public
 }

@@ -1,7 +1,7 @@
 package com.clinicaOdontologica.security;
 
 import com.clinicaOdontologica.security.filter.JwtRequestFilter;
-import com.clinicaOdontologica.service.security.service.UserServiceImpl;
+import com.clinicaOdontologica.service.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -24,11 +24,11 @@ import static org.springframework.boot.autoconfigure.security.servlet.PathReques
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private UserServiceImpl userService;
+    private UserService userService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public SecurityConfig(UserServiceImpl userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public SecurityConfig(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }

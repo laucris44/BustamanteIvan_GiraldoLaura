@@ -4,7 +4,6 @@ import com.clinicaOdontologica.entity.Odontologo;
 import com.clinicaOdontologica.dto.OdontologoDTO;
 import com.clinicaOdontologica.entity.Turno;
 import com.clinicaOdontologica.repository.IOdontologoRepository;
-import com.clinicaOdontologica.repository.OdontologoRepository;
 import com.clinicaOdontologica.repository.ITurnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
