@@ -1,7 +1,6 @@
 package com.clinicaOdontologica.security.filter;
 
 import com.clinicaOdontologica.security.utils.JwtUtil;
-import com.clinicaOdontologica.service.security.IUserService;
 import com.clinicaOdontologica.service.security.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

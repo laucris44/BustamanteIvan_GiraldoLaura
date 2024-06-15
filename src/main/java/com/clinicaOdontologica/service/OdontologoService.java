@@ -3,16 +3,15 @@ package com.clinicaOdontologica.service;
 import com.clinicaOdontologica.entity.Odontologo;
 import com.clinicaOdontologica.dto.OdontologoDTO;
 import com.clinicaOdontologica.entity.Turno;
-import com.clinicaOdontologica.repository.IOdontolgoRepository;
+import com.clinicaOdontologica.repository.IOdontologoRepository;
 import com.clinicaOdontologica.repository.OdontologoRepository;
-import com.clinicaOdontologica.service.IOdontologoService;
 import com.clinicaOdontologica.repository.ITurnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.clinicaOdontologica.exeptions.BadRequestException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.stereotype.Service;
+
 import java.util.*;
 
 
@@ -31,10 +30,10 @@ public class OdontologoService implements IOdontologoService{
     }
 
     public void eliminarOdontologo(Long id){
-        IOdontolgoRepository.deleteById(id);
+        IOdontologoRepository.deleteById(id);
     }
     public Odontologo buscarPorId(Long id) {
-        return IOdontolgoRepository.findById(id);
+        return IOdontologoRepository.findById(id);
     }
 
         /*
