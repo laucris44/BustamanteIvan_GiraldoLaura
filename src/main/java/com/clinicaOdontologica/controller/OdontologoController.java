@@ -1,32 +1,55 @@
 package com.clinicaOdontologica.controller;
 
 
-import com.clinicaOdontologica.entity.Odontologo;
-import com.clinicaOdontologica.service.OdontologoService;
+import com.clinicaOdontologica.dto.OdontologoDTO;
+import com.clinicaOdontologica.exeptions.BadRequestException;
+import com.clinicaOdontologica.service.IOdontologoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/odontologos")
 public class OdontologoController {
-    private OdontologoService odontologoService;
+    @Autowired
+    private IOdontologoService odontologoService;
 
-    public OdontologoController() {
-        odontologoService= new OdontologoService();
-    }
     @PostMapping
-    public Odontologo registrarUnOdontologo(@RequestBody Odontologo odontologo){
-        return odontologoService.guardarOdontologo(odontologo);
+    public ResponseEntity<?> crearOdontologo(@RequestBody OdontologoDTO odontologoDTO) throws BadRequestException {
+        try {
+            odontologoService.crearOdontologo(odontologoDTO);
+            return ResponseEntity.ok(HttpStatus.OK);
+        } catch (Exception e) {
+            throw new BadRequestException("No se pudo crear el odontologo");
+        }
     }
+
     @GetMapping("/{id}")
-    public Odontologo buscarOdontologoPorId(@PathVariable Integer id){
-        return odontologoService.buscarPorId(id);
+    public OdontologoDTO buscarOdontologoId(@PathVariable Long id) throws Exception {
+        return odontologoService.buscarOdontologo(id);
     }
-    @GetMapping
-    public ResponseEntity<List<Odontologo>> listarTodos(){
-        return ResponseEntity.ok((List<Odontologo>) odontologoService.listarTodos());
+
+    @PutMapping("/modificar")
+    public ResponseEntity<?> modificarOdontologo(@RequestBody OdontologoDTO odontologoDTO) {
+        odontologoService.modificarOdontologo(odontologoDTO);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<?> eliminarDomicilio(@PathVariable Long id) {
+        ResponseEntity<String> response = null;
+        odontologoService.eliminarOdontologo(id);
+        response = ResponseEntity.status(HttpStatus.OK).body("Odontologo eliminado");
+        return response;
+    }
+
+
+    @GetMapping("/listar")
+    public Collection<OdontologoDTO> listarOdontologos() {
+        return odontologoService.listarOdontologos();
     }
 
 }
