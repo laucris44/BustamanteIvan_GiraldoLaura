@@ -35,19 +35,6 @@ public class OdontologoService implements IOdontologoService{
         return IOdontologoRepository.findById(id);
     }
 
-        /*
-buscar por id
-registrar nuevo
-actulizar
-elminar
-listar todos
-     */
-
-    public void eliminarTurno(Long id){
-        ITurnoRepository.findById(id);
-        ITurnoRepository.deleteById(id);
-    }
-
     public Optional<Turno> buscarPorID(Long id){
         return ITurnoRepository.findById(id);
     }
