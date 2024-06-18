@@ -1,4 +1,4 @@
-package com.clinicaOdontologica.service;
+package com.clinicaOdontologica.service.impl;
 
 import com.clinicaOdontologica.dto.OdontologoDTO;
 import com.clinicaOdontologica.dto.PacienteDTO;

@@ -1,10 +1,11 @@
-package com.clinicaOdontologica.service;
+package com.clinicaOdontologica.service.impl;
 
 import com.clinicaOdontologica.dto.PacienteDTO;
 import com.clinicaOdontologica.entity.Paciente;
 import com.clinicaOdontologica.exeptions.BadRequestException;
 import com.clinicaOdontologica.exeptions.ResourceNotFoundException;
 import com.clinicaOdontologica.repository.IPacienteRepository;
+import com.clinicaOdontologica.service.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 
 @Service
-public class PacienteService implements IPacienteService{
+public class PacienteService implements IPacienteService {
     @Autowired
     private IPacienteRepository pacienteRepository;
 

@@ -1,10 +1,11 @@
-package com.clinicaOdontologica.service;
+package com.clinicaOdontologica.service.impl;
 
 import com.clinicaOdontologica.entity.Odontologo;
 import com.clinicaOdontologica.dto.OdontologoDTO;
 import com.clinicaOdontologica.entity.Turno;
 import com.clinicaOdontologica.repository.IOdontologoRepository;
 import com.clinicaOdontologica.repository.ITurnoRepository;
+import com.clinicaOdontologica.service.IOdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.clinicaOdontologica.exeptions.BadRequestException;
@@ -15,7 +16,7 @@ import java.util.*;
 
 
 @Service
-public class OdontologoService implements IOdontologoService{
+public class OdontologoService implements IOdontologoService {
     @Autowired
     private IOdontologoRepository odontologoRepository;
 

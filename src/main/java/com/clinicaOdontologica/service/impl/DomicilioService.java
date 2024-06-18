@@ -1,4 +1,4 @@
-package com.clinicaOdontologica.service;
+package com.clinicaOdontologica.service.impl;
 
 import com.clinicaOdontologica.entity.Domicilio;
 import com.clinicaOdontologica.exeptions.BadRequestException;
