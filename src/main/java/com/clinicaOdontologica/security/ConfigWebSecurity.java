@@ -35,14 +35,22 @@ public class ConfigWebSecurity {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
-                .authorizeHttpRequests((authz) -> authz
-                .requestMatchers("/post_pacientes.html").hasRole("USER")
-
-                .anyRequest().authenticated()
+                .authorizeHttpRequests((requests) -> requests
+                        .anyRequest().authenticated()
                 )
-                .formLogin(withDefaults())
-                .logout(withDefaults());
+                .formLogin((form) -> form
+                        .loginPage("/login")
+                        .permitAll()
+                )
+                .logout((logout) -> logout.permitAll());
+
         return http.build();
+    }
+
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }
