@@ -21,27 +21,7 @@ public class OdontologoService implements IOdontologoService{
 
     @Autowired
     ObjectMapper mapper;
-    public Odontologo registrarOdontologo(Odontologo odontologo){
-        return odontologoRepository.save(odontologo);
-    }
-    public List<Odontologo> listarTodos(){
-        return odontologoRepository.findAll();
-    }
 
-    public void eliminarOdontologo(Long id){
-        IOdontologoRepository.deleteById(id);
-    }
-    public Odontologo buscarPorId(Long id) {
-        return IOdontologoRepository.findById(id);
-    }
-
-    public Optional<Turno> buscarPorID(Long id){
-        return ITurnoRepository.findById(id);
-    }
-
-    public List<Turno> buscarTodos(){
-        return ITurnoRepository.findAll();
-    }
 
     private void guardarOdontologo(OdontologoDTO ondontolgoDTO) {
         //Armamos un método para código repetido
