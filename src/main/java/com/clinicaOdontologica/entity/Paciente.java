@@ -9,8 +9,22 @@ import lombok.*;
 import java.util.Date;
 import java.util.Set;
 
+/*
 @Builder
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "pacientes")
+@ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})*/
+
+
+
+@Builder
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "pacientes")
 @ToString
@@ -46,10 +60,12 @@ public class Paciente {
         this.domicilio = domicilio;
         this.email= email;
     }
-
+/*
     public Paciente() {
     }
+    , Turno turno
 
+*/
     public Paciente(Long id, String nombre, String apellido, String cedula, Date fechaIngreso, Domicilio domicilio, String email) {
         this.id = id;
         this.nombre = nombre;
@@ -58,6 +74,9 @@ public class Paciente {
         this.fechaIngreso = fechaIngreso;
         this.domicilio = domicilio;
         this.email= email;
+   //     Set<Turno> turnos1 = this.turnos;
+
+
     }
 
     public Long getId() {

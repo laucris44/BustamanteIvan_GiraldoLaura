@@ -43,7 +43,15 @@ public class Turno {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private LocalTime hora;
 
+    /*
     public Turno() {
+    }*/
+
+    public Turno(Paciente paciente, Odontologo odontologo, LocalDate fecha, LocalTime hora) {
+        this.paciente = paciente;
+        this.odontologo = odontologo;
+        this.fecha = fecha;
+        this.hora = hora;
     }
 
     public Turno(Long id, Paciente paciente, Odontologo odontologo, LocalDate fecha, LocalTime hora) {

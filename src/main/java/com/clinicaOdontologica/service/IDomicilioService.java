@@ -2,7 +2,7 @@ package com.clinicaOdontologica.service;
 
 import com.clinicaOdontologica.dto.DomicilioDTO;
 import com.clinicaOdontologica.exeptions.BadRequestException;
-
+import org.springframework.context.annotation.Bean;
 import java.util.Set;
 
 public interface IDomicilioService {

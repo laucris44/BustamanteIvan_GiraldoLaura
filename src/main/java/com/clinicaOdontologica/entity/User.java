@@ -47,6 +47,9 @@ public class User implements UserDetails {
         this.role = role;
     }
 
+    public User(String jorgito, String passCifrado, ERole eRole, String mail, String jpereyradh) {
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }

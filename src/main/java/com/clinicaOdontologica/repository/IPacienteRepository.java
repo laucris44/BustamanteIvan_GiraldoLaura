@@ -16,5 +16,5 @@ public interface IPacienteRepository extends JpaRepository<Paciente,Long> {
     @Query("SELECT p FROM Paciente p JOIN FETCH p.domicilio WHERE p.id = :id")
     Paciente findByIdWithDomicilio(@Param("id") Long id);
 
-    Set<Paciente> findByDni(String dni);
+    Set<Paciente> findByCedula(String cedula);
 }
