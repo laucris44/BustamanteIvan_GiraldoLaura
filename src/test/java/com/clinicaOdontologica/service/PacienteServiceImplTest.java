@@ -1,4 +1,4 @@
-package com.clinicaOdontologicaSpring.clinicaOdontologicaSpring.service;
+package com.clinicaOdontologica.service;
 
 import org.springframework.boot.test.context.SpringBootTest;
 

@@ -1,7 +1,7 @@
-package com.clinicaOdontologicaSpring.clinicaOdontologicaSpring.service;
+package com.clinicaOdontologica.service;
 
-import com.clinicaOdontologicaSpring.clinicaOdontologicaSpring.dto.DomicilioDTO;
-import com.clinicaOdontologicaSpring.clinicaOdontologicaSpring.service.impl.DomicilioServiceImpl;
+import com.clinicaOdontologica.dto.DomicilioDTO;
+import com.clinicaOdontologica.service.impl.DomicilioService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class DomicilioServiceImplTest {
 
     @Autowired
-    DomicilioServiceImpl domicilioService;
+    DomicilioService domicilioService;
 
     @Test
     public void testCrearDomicilio() throws Exception {
