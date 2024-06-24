@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-public class TurnoServiceImplTest {
+public class TurnoServiceTest {
     //Falla. Dice que el paciente y odontologo esta en null
 
 /* @Autowired

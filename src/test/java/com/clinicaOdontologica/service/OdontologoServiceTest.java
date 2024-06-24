@@ -1,7 +1,6 @@
 package com.clinicaOdontologica.service;
 
 import com.clinicaOdontologica.dto.OdontologoDTO;
-import com.clinicaOdontologica.service.IOdontologoService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-public class OdontologoServiceImplTest {
+public class OdontologoServiceTest {
 
     @Autowired
     IOdontologoService odontologoService;

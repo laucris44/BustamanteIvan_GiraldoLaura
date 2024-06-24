@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-public class PacienteServiceImplTest {
+public class PacienteServiceTest {
     //Falla. Dice que el domicilio esta en null
   /*  @Autowired
     PacienteServiceImpl pacienteService;
